@@ -24,21 +24,25 @@
         </md-toolbar>
         <md-content flex>
             <p>Stuff</p>
+            <md-button ng-click="close()" class="md-primary">
+                Close Sidenav Right
+            </md-button>
         </md-content>
     </md-sidenav>
     <md-content layout="horizontal" layout-align="center">
         <md-list id="content">
             <div ng-repeat="chunk in ::chunks">
-                <md-card ng-if="!chunk.expanded" ng-click="chunk.expanded = !chunk.expanded" ng-mouseover="hover = true" ng-mouseout="hover = false">
+                <p ng-if="chunk.divider">{{chunk.title}}</p>
+                <md-card ng-if="!chunk.expanded && !chunk.divider" ng-click="chunk.expanded = !chunk.expanded" ng-mouseover="hover = true" ng-mouseout="hover = false">
                     <md-item layout="horizontal">
                         <div>
                             <img class="round-face" src="http://placekitten.com/g/48/48"/>
                         </div>
-                        <div layout="horizontal" flex>
-                            <div layout="vertical" layout-align="center" flex="33">
+                        <div class="collapsed-row" layout="horizontal" flex>
+                            <div layout="vertical" layout-align="center" flex="45">
                                 <span><b>{{ chunk.title }}</b></span>
                             </div>
-                            <div layout="vertical" layout-align="center" flex="57">
+                            <div layout="vertical" layout-align="center" flex="45">
                                 <span>{{ chunk.description }}</span>
                             </div>
                             <div layout="vertical" layout-align="center" flex="10" ng-if="hover">
@@ -47,14 +51,20 @@
                         </div>
                     </md-item>
                 </md-card>
-                <md-card ng-if="chunk.expanded" ng-click="chunk.expanded = !chunk.expanded">
+                <md-card ng-if="chunk.expanded && !chunk.divider" ng-click="chunk.expanded = !chunk.expanded">
                     <div layout="horizontal">
-                        <img class="round-face" src="http://placekitten.com/g/48/48"/>
                         <div>
-                            <h2>Some Post</h2>
-                            <p>Some Description</p>
-                            <p>Some more stuff</p>
-                            <p>And even way more stuff!!</p>
+                            <img class="round-face" src="http://placekitten.com/g/48/48"/>
+                        </div>
+                        <div flex>
+                            <h2>{{ chunk.title }}</h2>
+                            <p>{{ chunk.description }}</p>
+                            <div ng-if="chunk.content && chunk.content.type === 'QUOTE'">
+                                <md-button ng-click="show_quotes = !show_quotes; $event.stopPropagation();">Show {{chunk.content.quotes.length}} quotes</md-button>
+                                <div ng-if="show_quotes" ng-repeat="quote in ::chunk.content.quotes">
+                                    <md-whiteframe class="md-whiteframe-z1"><blockquote>{{ quote }}</blockquote></md-whiteframe>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </md-card>
@@ -66,27 +76,27 @@
 <div id="fab-popup" layout="vertical" layout-align="space-between" ng-if="showAddButtons" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
     <md-button class="md-fab md-raised" ng-click="openDialog($event);" aria-label="New document">
         <md-icon icon="bower_components/material-design-icons/content/svg/production/ic_add_24px.svg" style="width: 24px; height: 24px;"></md-icon>
-        <md-tooltip>
-            Add Quote
-        </md-tooltip>
+        <!--<md-tooltip>-->
+            <!--Add Quote-->
+        <!--</md-tooltip>-->
     </md-button>
     <md-button class="md-fab md-raised" ng-click="openDialog($event);" aria-label="New document">
         <md-icon icon="bower_components/material-design-icons/content/svg/production/ic_add_24px.svg" style="width: 24px; height: 24px;"></md-icon>
-        <md-tooltip>
-            Add Text
-        </md-tooltip>
+        <!--<md-tooltip>-->
+            <!--Add Text-->
+        <!--</md-tooltip>-->
     </md-button>
     <md-button class="md-fab md-raised" ng-click="openDialog($event);" aria-label="New document">
         <md-icon icon="bower_components/material-design-icons/content/svg/production/ic_add_24px.svg" style="width: 24px; height: 24px;"></md-icon>
-        <md-tooltip>
-            Add Image
-        </md-tooltip>
+        <!--<md-tooltip>-->
+            <!--Add Image-->
+        <!--</md-tooltip>-->
     </md-button>
     <md-button class="md-fab md-raised" ng-click="openDialog($event);" aria-label="New document">
         <md-icon icon="bower_components/material-design-icons/content/svg/production/ic_add_24px.svg" style="width: 24px; height: 24px;"></md-icon>
-        <md-tooltip>
-            Add Video
-        </md-tooltip>
+        <!--<md-tooltip>-->
+            <!--Add Video-->
+        <!--</md-tooltip>-->
     </md-button>
 </div>
 

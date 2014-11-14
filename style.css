@@ -23,6 +23,12 @@ md-card {
     cursor: pointer;
 }
 
+.collapsed-row span {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
 .animate-enter {
     -webkit-transition: 1s linear all; /* Chrome */
     transition: 1s linear all;
@@ -61,6 +67,7 @@ md-card {
 
 #content {
     min-width: 70%;
+    max-width: 1080px;
 }
 
 .animate-if {
