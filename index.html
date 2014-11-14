@@ -10,6 +10,7 @@
 <header>
     <md-toolbar scroll-shrink>
         <div class="md-toolbar-tools">
+            <md-button ng-click="toggleMenu()">Menu</md-button>
             <h3>
                 <span>Angular Material Inbox</span>
             </h3>
@@ -17,6 +18,14 @@
     </md-toolbar>
 </header>
 <div layout="vertical" flex>
+    <md-sidenav class="md-sidenav-left" component-id="left">
+        <md-toolbar class="md-theme-indigo">
+            <h1 class="md-toolbar-tools">Sidenav Left</h1>
+        </md-toolbar>
+        <md-content flex>
+            <p>Stuff</p>
+        </md-content>
+    </md-sidenav>
     <md-content layout="horizontal" layout-align="center">
         <md-list id="content">
             <div ng-repeat="chunk in ::chunks">
@@ -54,7 +63,7 @@
     </md-content>
 </div>
 
-<div layout="vertical" layout-align="space-between" style="height: 260px; position: fixed; right: 40px; bottom: 90px;" ng-if="showAddButtons" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+<div id="fab-popup" layout="vertical" layout-align="space-between" ng-if="showAddButtons" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
     <md-button class="md-fab md-raised" ng-click="openDialog($event);" aria-label="New document">
         <md-icon icon="bower_components/material-design-icons/content/svg/production/ic_add_24px.svg" style="width: 24px; height: 24px;"></md-icon>
         <md-tooltip>
@@ -84,18 +93,6 @@
 <md-button id="mainFab" class="md-fab md-raised" ng-click="showAddButtons = !showAddButtons;" aria-label="New document">
     <md-icon icon="bower_components/material-design-icons/content/svg/production/ic_add_24px.svg" style="width: 24px; height: 24px;"></md-icon>
 </md-button>
-<!--<md-bottom-sheet class="md-list md-has-header">-->
-    <!--<md-subheader>Comment Actions</md-subheader>-->
-    <!--<md-list>-->
-        <!--<md-item ng-repeat="item in items" ng-click="showGridBottomSheet($event)">-->
-            <!--<md-button>-->
-                <!--&lt;!&ndash; Using custom inline icon until md-icon is ready. DONT USE ME! &ndash;&gt;-->
-                <!--<md-inline-list-icon icon="{{item.icon}}"></md-inline-list-icon>-->
-                <!--<span class="md-inline-list-icon-label">{{ item.name }}</span>-->
-            <!--</md-button>-->
-        <!--</md-item>-->
-    <!--</md-list>-->
-<!--</md-bottom-sheet>-->
 
 <script src="/bower_components/angular/angular.js"></script>
 <script src="/bower_components/angular-aria/angular-aria.js"></script>

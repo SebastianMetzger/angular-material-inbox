@@ -1,6 +1,6 @@
 // Include app dependency on ngMaterial
 var app = angular.module( 'YourApp', [ 'ngMaterial' ] );
-app.controller("YourController", ['$scope', '$mdDialog', function($scope, $mdDialog) {
+app.controller("YourController", ['$scope', '$mdDialog', '$mdSidenav', function($scope, $mdDialog, $mdSidenav) {
 
     $scope.openDialog = function($event) {
         $mdDialog.show({
@@ -22,6 +22,10 @@ app.controller("YourController", ['$scope', '$mdDialog', function($scope, $mdDia
         function afterShowAnimation(scope, element, options) {
             // post-show code here: DOM element focus, etc.
         }
+    };
+
+    $scope.toggleMenu = function(){
+        $mdSidenav('left').toggle();
     };
 
     $scope.chunks = [
