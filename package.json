@@ -1,0 +1,24 @@
+{
+  "name": "angular-material-inbox",
+  "version": "0.0.0",
+  "description": "angular-material-inbox ======================",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Sturmination/angular-material-inbox.git"
+  },
+  "author": "Sebastian Metzger",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Sturmination/angular-material-inbox/issues"
+  },
+  "devDependencies": {
+    "matchdep": "~0.3.0",
+    "grunt-express": "~1.4.1",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-open": "~0.2.3"
+  }
+}
