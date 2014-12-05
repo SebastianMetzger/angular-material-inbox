@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="stylesheet" href="/bower_components/angular-material/angular-material.css">
     <link rel="stylesheet" href="/bower_components/angular-material/themes/blue-theme.css">
@@ -8,28 +9,36 @@
 </head>
 <body layout="vertical" md-theme="blue" layout-fill ng-app="YourApp" ng-controller="YourController">
 <header>
-    <md-toolbar scroll-shrink>
+    <md-toolbar scroll-shrink layout="row">
         <div class="md-toolbar-tools">
             <md-button ng-click="toggleMenu()">Menu</md-button>
             <h3>
-                <span>Angular Material Inbox</span>
+                <span>Angular Inbox</span>
             </h3>
         </div>
     </md-toolbar>
 </header>
 <div layout="vertical" flex>
+    <!-- LEFT SIDEBAR -->
     <md-sidenav class="md-sidenav-left" component-id="left">
         <md-toolbar class="md-theme-indigo">
             <h1 class="md-toolbar-tools">Sidenav Left</h1>
         </md-toolbar>
-        <md-content flex>
-            <p>Stuff</p>
+        <md-content ng-controller="LeftCtrl" class="md-padding" flex layout="vertical">
             <md-button ng-click="close()" class="md-primary">
-                Close Sidenav Right
+                <md-icon icon="/img/icons/ic_people_24px.svg" style="width: 24px; height: 24px;"></md-icon>Inbox
             </md-button>
+            <md-button ng-click="close()" class="md-primary">
+                <md-icon icon="/img/icons/ic_people_24px.svg" style="width: 24px; height: 24px;"></md-icon>Snoozed
+            </md-button>
+            <md-button ng-click="close()" class="md-primary">
+                <md-icon icon="/img/icons/ic_people_24px.svg" style="width: 24px; height: 24px;"></md-icon>Done
+            </md-button>
+            <md-divider></md-divider>
         </md-content>
     </md-sidenav>
-    <md-content layout="horizontal" layout-align="center">
+    <!-- MAIN CONTENT -->
+    <md-content id="main" layout="horizontal" layout-align="center">
         <md-list id="content">
             <div ng-repeat="chunk in ::chunks">
                 <p ng-if="chunk.divider">{{chunk.title}}</p>
@@ -57,7 +66,7 @@
                             <img class="round-face" src="http://placekitten.com/g/48/48"/>
                         </div>
                         <div flex>
-                            <img src="example/dell.jpg" />
+                            <img src="http://placekitten.com/g/800/400" />
                             <h2>{{ chunk.title }}</h2>
                             <p>{{ chunk.description }}</p>
                             <div ng-if="chunk.content && chunk.content.type === 'QUOTE'">
@@ -74,6 +83,7 @@
     </md-content>
 </div>
 
+<!-- FAB POPUP -->
 <div id="fab-popup" layout="vertical" layout-align="space-between" ng-if="showAddButtons" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
     <md-button class="md-fab md-raised" ng-click="openDialog($event);" aria-label="New document">
         <md-icon icon="bower_components/material-design-icons/content/svg/production/ic_add_24px.svg" style="width: 24px; height: 24px;"></md-icon>
@@ -101,6 +111,7 @@
     </md-button>
 </div>
 
+<!-- HOVERING FAB -->
 <md-button id="mainFab" class="md-fab md-raised" ng-click="showAddButtons = !showAddButtons;" aria-label="New document">
     <md-icon icon="bower_components/material-design-icons/content/svg/production/ic_add_24px.svg" style="width: 24px; height: 24px;"></md-icon>
 </md-button>

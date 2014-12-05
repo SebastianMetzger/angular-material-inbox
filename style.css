@@ -14,7 +14,7 @@ footer {
     padding: 16px;
 }
 
-md-content.md-blue-theme {
+md-content#main.md-blue-theme {
     background-color: #ececec;
 }
 

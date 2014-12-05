@@ -1,5 +1,7 @@
+"use strict";
 // Include app dependency on ngMaterial
 var app = angular.module( 'YourApp', [ 'ngMaterial' ] );
+// Main Controller
 app.controller("YourController", ['$scope', '$mdDialog', '$mdSidenav', function($scope, $mdDialog, $mdSidenav) {
 
     $scope.openDialog = function($event) {
@@ -34,7 +36,7 @@ app.controller("YourController", ['$scope', '$mdDialog', '$mdSidenav', function(
             divider: true
         },
         {
-            title: "Dell’s Life After Wall Street - NYTimes.com",
+            title: "Dell's Life After Wall Street - NYTimes.com",
             description: "Dell is trying to graduate/evolve/pivot from PCs to lots of other products &amp; industries. Still being the backbone of the company, PC sales are financing the transition, but new products are supporting PC/server sales as well. Dell/the article don't give any numbers yet on how well (or not) those new categories are working. Increased risk for increased potential upside.",
             expanded: false,
             content: {
@@ -52,7 +54,7 @@ app.controller("YourController", ['$scope', '$mdDialog', '$mdSidenav', function(
             }
         },
         {
-            title: "Sidechains – AVC",
+            title: "Sidechains - AVC",
             description: "Fred Wilson gives a simple explanation of 'pegged sidechains', and their importantance to the future of the #bitcoin ecosystem. Worth the read.",
             expanded: false,
             content: {
@@ -83,7 +85,7 @@ app.controller("YourController", ['$scope', '$mdDialog', '$mdSidenav', function(
             }
         },
         {
-            title: "“Ethanifier” Lets You Build Your Own Single-Purpose Messaging App Like The Viral Hit “Ethan” | TechCrunch",
+            title: "'Ethanifier' Lets You Build Your Own Single-Purpose Messaging App Like The Viral Hit “Ethan” | TechCrunch",
             description: "Thoughts on NYT's piece on FB trying to get publishers to hand over their content / publish to FB (http://www.nytimes.com/2014/10/27/business/media/facebook-offers-life-raft-but-publishers-are-wary.html). Author fears that if publishers bow, FB could have as big of an impact to news/information discovery as Google (which is already frightening).",
             expanded: false,
             content: {
@@ -172,10 +174,16 @@ app.controller("YourController", ['$scope', '$mdDialog', '$mdSidenav', function(
         $mdBottomSheet.hide(clickedItem);
     };
 }]);
-
+// Dialog Controller
 app.controller('DialogController', function($scope, $mdDialog, name) {
     $scope.userName = name;
     $scope.closeDialog = function() {
         $mdDialog.hide();
     };
+});
+// Left Sidebar Controller
+app.controller('LeftCtrl', function($scope, $timeout, $mdSidenav) {
+  $scope.close = function() {
+    $mdSidenav('left').close();
+  };
 });

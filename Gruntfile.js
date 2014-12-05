@@ -1,7 +1,7 @@
 module.exports = function(grunt) {
 // Load Grunt tasks declared in the package.json file
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
-
+    grunt.loadNpmTasks('grunt-contrib-jshint');
 // Configure Grunt
     grunt.initConfig({
 
@@ -35,13 +35,20 @@ module.exports = function(grunt) {
             all: {
                 path: 'http://localhost:8080/index.html'
             }
-        }
+        },
+         jshint: {
+            all: ['Gruntfile.js', 'controllers/**/*.js']
+          }
     });
 
 // Creates the `server` task
     grunt.registerTask('server', [
+        'jshint',
         'express',
         'open',
         'watch'
+    ]);
+    grunt.registerTask('default', [
+        'jshint'
     ]);
 };

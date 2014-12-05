@@ -19,6 +19,7 @@
     "matchdep": "~0.3.0",
     "grunt-express": "~1.4.1",
     "grunt-contrib-watch": "~0.6.1",
-    "grunt-open": "~0.2.3"
+    "grunt-open": "~0.2.3",
+    "grunt-contrib-jshint": "~0.10.0"
   }
 }
