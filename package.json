@@ -1,6 +1,6 @@
 {
   "name": "angular-material-inbox",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "angular-material-inbox ======================",
   "main": "Gruntfile.js",
   "scripts": {
@@ -16,10 +16,6 @@
     "url": "https://github.com/Sturmination/angular-material-inbox/issues"
   },
   "devDependencies": {
-    "matchdep": "~0.3.0",
-    "grunt-express": "~1.4.1",
-    "grunt-contrib-watch": "~0.6.1",
-    "grunt-open": "~0.2.3",
     "grunt-contrib-jshint": "~0.10.0"
   }
 }

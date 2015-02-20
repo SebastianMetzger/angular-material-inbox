@@ -65,6 +65,10 @@ md-card {
     bottom: 90px;
 }
 
+#main {
+    width: 100%;
+}
+
 #content {
     min-width: 70%;
     max-width: 1080px;

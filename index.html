@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="stylesheet" href="/bower_components/angular-material/angular-material.css">
-    <link rel="stylesheet" href="/bower_components/angular-material/themes/blue-theme.css">
     <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:400,500,700,400italic">
 </head>
 <body layout="vertical" md-theme="blue" layout-fill ng-app="YourApp" ng-controller="YourController">
-<header>
+<div layout="column" layout-fill>
     <md-toolbar scroll-shrink layout="row">
         <div class="md-toolbar-tools">
             <md-button ng-click="toggleMenu()">Menu</md-button>
@@ -17,94 +17,91 @@
             </h3>
         </div>
     </md-toolbar>
-</header>
-<div layout="vertical" flex>
-    <!-- LEFT SIDEBAR -->
-    <md-sidenav class="md-sidenav-left" component-id="left">
-        <md-toolbar class="md-theme-indigo">
-            <h1 class="md-toolbar-tools">Sidenav Left</h1>
-        </md-toolbar>
-        <md-content ng-controller="LeftCtrl" class="md-padding" flex layout="vertical">
-            <md-button ng-click="close()" class="md-primary">
-                <md-icon icon="/img/icons/ic_people_24px.svg" style="width: 24px; height: 24px;"></md-icon>Inbox
-            </md-button>
-            <md-button ng-click="close()" class="md-primary">
-                <md-icon icon="/img/icons/ic_people_24px.svg" style="width: 24px; height: 24px;"></md-icon>Snoozed
-            </md-button>
-            <md-button ng-click="close()" class="md-primary">
-                <md-icon icon="/img/icons/ic_people_24px.svg" style="width: 24px; height: 24px;"></md-icon>Done
-            </md-button>
-            <md-divider></md-divider>
-        </md-content>
-    </md-sidenav>
-    <!-- MAIN CONTENT -->
-    <md-content id="main" layout="horizontal" layout-align="center">
-        <md-list id="content">
-            <div ng-repeat="chunk in ::chunks">
-                <p ng-if="chunk.divider">{{chunk.title}}</p>
-                <md-card ng-if="!chunk.expanded && !chunk.divider" ng-click="chunk.expanded = !chunk.expanded" ng-mouseover="hover = true" ng-mouseout="hover = false">
-                    <md-item layout="horizontal">
-                        <div>
-                            <img class="round-face" src="http://placekitten.com/g/48/48"/>
-                        </div>
-                        <div class="collapsed-row" layout="horizontal" flex>
-                            <div layout="vertical" layout-align="center" flex="45">
-                                <span><b>{{ chunk.title }}</b></span>
-                            </div>
-                            <div layout="vertical" layout-align="center" flex="45">
-                                <span>{{ chunk.description }}</span>
-                            </div>
-                            <div layout="vertical" layout-align="center" flex="10" ng-if="hover">
-                                <span>Hover Elements</span>
-                            </div>
-                        </div>
-                    </md-item>
-                </md-card>
-                <md-card ng-if="chunk.expanded && !chunk.divider" ng-click="chunk.expanded = !chunk.expanded">
-                    <div layout="horizontal">
-                        <div>
-                            <img class="round-face" src="http://placekitten.com/g/48/48"/>
-                        </div>
-                        <div flex>
-                            <img src="http://placekitten.com/g/800/400" />
-                            <h2>{{ chunk.title }}</h2>
-                            <p>{{ chunk.description }}</p>
-                            <div ng-if="chunk.content && chunk.content.type === 'QUOTE'">
-                                <md-button ng-click="show_quotes = !show_quotes; $event.stopPropagation();">Show {{chunk.content.quotes.length}} quotes</md-button>
-                                <div ng-if="show_quotes" ng-repeat="quote in ::chunk.content.quotes">
-                                    <md-whiteframe class="md-whiteframe-z1"><blockquote>{{ quote }}</blockquote></md-whiteframe>
+    <md-content layout="vertical" flex>
+        <!-- LEFT SIDEBAR -->
+        <md-sidenav class="md-sidenav-left" md-component-id="left">
+            <md-toolbar class="md-theme-indigo">
+                <h1 class="md-toolbar-tools">Options</h1>
+            </md-toolbar>
+            <md-content ng-controller="LeftCtrl" class="md-padding" flex layout="column" layout-align="start">
+                <md-button ng-click="close()" class="md-primary" >
+                    <md-icon icon="/img/icons/ic_people_24px.svg" style="width: 24px; height: 24px;"></md-icon>Inbox
+                </md-button>
+                <md-button ng-click="close()" class="md-primary">
+                    <md-icon icon="/img/icons/ic_people_24px.svg" style="width: 24px; height: 24px;"></md-icon>Snoozed
+                </md-button>
+                <md-button ng-click="close()" class="md-primary">
+                    <md-icon icon="/img/icons/ic_people_24px.svg" style="width: 24px; height: 24px;"></md-icon>Done
+                </md-button>
+                <md-divider></md-divider>
+            </md-content>
+        </md-sidenav>
+        <!-- MAIN CONTENT -->
+        <md-content id="main" layout="horizontal" layout-align="center">
+            <md-list>
+                <div id="content">
+                    <div ng-repeat="chunk in ::chunks">
+                        <p ng-if="chunk.divider">{{chunk.title}}</p>
+                        <md-card ng-if="!chunk.expanded && !chunk.divider" ng-click="chunk.expanded = !chunk.expanded" ng-mouseover="hover = true" ng-mouseout="hover = false">
+                            <md-item layout="row">
+                                <div>
+                                    <img class="round-face" src="http://placekitten.com/g/48/48"/>
                                 </div>
+                                <div class="collapsed-row" layout="row" layout-align="start center" flex>
+                                    <span flex="45"><b>{{ chunk.title }}</b></span>
+                                    <span flex="45">{{ chunk.description }}</span>
+                                    <span flex="5"></span>
+                                    <span flex="10" ng-if="hover"><md-icon md-svg-src="bower_components/material-design-icons/content/svg/production/ic_archive_24px.svg" style="width: 24px; height: 24px;"></md-icon></span>
+                                </div>
+                            </md-item>
+                        </md-card>
+                        <md-card ng-if="chunk.expanded && !chunk.divider" ng-click="chunk.expanded = !chunk.expanded">
+                            <div layout="column">
+                                <div>
+                                    <img class="round-face" src="http://placekitten.com/g/48/48"/>
+                                </div>
+                                <md-card-content>
+                                <!-- <img src="http://placekitten.com/g/300/300"/> -->
+                                <h2>{{ chunk.title }}</h2>
+                                <p>{{ chunk.description }}</p>
+                                <div ng-if="chunk.content && chunk.content.type === 'QUOTE'">
+                                    <md-button ng-click="show_quotes = !show_quotes; $event.stopPropagation();">Show {{chunk.content.quotes.length}} quotes</md-button>
+                                    <div ng-if="show_quotes" ng-repeat="quote in ::chunk.content.quotes">
+                                        <md-whiteframe class="md-whiteframe-z1"><blockquote>{{ quote }}</blockquote></md-whiteframe>
+                                    </div>
+                                </div>
+                                </md-card-content>
                             </div>
-                        </div>
+                        </md-card>
                     </div>
-                </md-card>
-            </div>
-        </md-list>
+                </div>
+            </md-list>
+        </md-content>
     </md-content>
 </div>
 
 <!-- FAB POPUP -->
-<div id="fab-popup" layout="vertical" layout-align="space-between" ng-if="showAddButtons" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+<div id="fab-popup" layout="column" layout-align="space-between" ng-if="showAddButtons" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
     <md-button class="md-fab md-raised" ng-click="openDialog($event);" aria-label="New document">
-        <md-icon icon="bower_components/material-design-icons/content/svg/production/ic_add_24px.svg" style="width: 24px; height: 24px;"></md-icon>
+        <md-icon md-svg-src="bower_components/material-design-icons/content/svg/production/ic_gesture_24px.svg" style="width: 24px; height: 24px;"></md-icon>
         <!--<md-tooltip>-->
             <!--Add Quote-->
         <!--</md-tooltip>-->
     </md-button>
     <md-button class="md-fab md-raised" ng-click="openDialog($event);" aria-label="New document">
-        <md-icon icon="bower_components/material-design-icons/content/svg/production/ic_add_24px.svg" style="width: 24px; height: 24px;"></md-icon>
+        <md-icon md-svg-src="bower_components/material-design-icons/content/svg/production/ic_content_paste_24px.svg" style="width: 24px; height: 24px;"></md-icon>
         <!--<md-tooltip>-->
             <!--Add Text-->
         <!--</md-tooltip>-->
     </md-button>
     <md-button class="md-fab md-raised" ng-click="openDialog($event);" aria-label="New document">
-        <md-icon icon="bower_components/material-design-icons/content/svg/production/ic_add_24px.svg" style="width: 24px; height: 24px;"></md-icon>
+        <md-icon md-svg-src="bower_components/material-design-icons/content/svg/production/ic_archive_24px.svg" style="width: 24px; height: 24px;"></md-icon>
         <!--<md-tooltip>-->
             <!--Add Image-->
         <!--</md-tooltip>-->
     </md-button>
     <md-button class="md-fab md-raised" ng-click="openDialog($event);" aria-label="New document">
-        <md-icon icon="bower_components/material-design-icons/content/svg/production/ic_add_24px.svg" style="width: 24px; height: 24px;"></md-icon>
+        <md-icon md-svg-src="bower_components/material-design-icons/content/svg/production/ic_mail_24px.svg" style="width: 24px; height: 24px;"></md-icon>
         <!--<md-tooltip>-->
             <!--Add Video-->
         <!--</md-tooltip>-->
@@ -112,8 +109,11 @@
 </div>
 
 <!-- HOVERING FAB -->
-<md-button id="mainFab" class="md-fab md-raised" ng-click="showAddButtons = !showAddButtons;" aria-label="New document">
+<!-- <md-button  class="md-fab md-raised" ng-click="showAddButtons = !showAddButtons;" aria-label="New document">
     <md-icon icon="bower_components/material-design-icons/content/svg/production/ic_add_24px.svg" style="width: 24px; height: 24px;"></md-icon>
+</md-button> -->
+<md-button id="mainFab" class="md-fab md-raised" ng-click="showAddButtons = !showAddButtons;" aria-label="Photos">
+  <md-icon md-svg-src="bower_components/material-design-icons/content/svg/production/ic_add_24px.svg" style="width: 24px; height: 24px;"></md-icon>
 </md-button>
 
 <script src="/bower_components/angular/angular.js"></script>
