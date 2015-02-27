@@ -10,7 +10,7 @@
     "tests"
   ],
   "devDependencies": {
-    "angular-material": "~0.8.0",
+    "angular-material": "~0.8.1",
     "material-design-icons": "~1.0"
   },
   "resolutions": {
