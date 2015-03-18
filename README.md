@@ -13,7 +13,7 @@ If you have python 2.x installed, you can start serving the project via:
 
 ``python -m SimpleHTTPServer``
 
-Else if you have python 2.x installed, you can start serving the project via:
+Else if you have python 3.x installed, you can start serving the project via:
 
 ``python -m http.server``
 
